@@ -21,11 +21,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/v1/users', require('./routes/users'));
+app.use('/api/v1/roles', require('./routes/roles'));
 app.use('/api/v1/products', require('./routes/products'));
 app.use('/api/v1/categories', require('./routes/categories'));
 
-mongoose.connect('mongodb://admin:admin123@localhost:27017/NNPTUD-C3?authSource=admin');
+mongoose.connect('mongodb://localhost:27018/NNPTUD-C3');
 mongoose.connection.on('connected',()=>{
   console.log("connected");
 })
